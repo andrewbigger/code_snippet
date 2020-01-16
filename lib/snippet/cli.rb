@@ -62,7 +62,7 @@ module Snippet
       ##
       # Show snippet directory path
       #
-      def self.snippet_path(
+      def self.path(
         _lang,
         _copy,
         _vars = []

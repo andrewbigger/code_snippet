@@ -24,7 +24,7 @@ Options:
 Commands:
   display\t finds and shows snippet
   list\t\t displays a list of snippets
-  snippet_dir\t displays configured snippet path
+  path\t displays configured snippet path
 ".freeze
 
 @trace = false
