@@ -23,19 +23,19 @@ module Snippet
         manager.load_snippets
 
         snips = manager.find(name, lang)
-        raise "unable to find #{name}" if snips.length == 0
+        raise "unable to find #{name}" if snips.empty?
 
         snip = snips.first
         if snips.length > 1
           snip = CLI::Presenters.pick_from(
             'Multiple snippets found, which one would you like to view?',
             snips
-          ) 
+          )
         end
 
         if copy
           Clipboard.copy(snip.content)
-          CLI::print_message("COPIED: #{snip.path}")
+          CLI.print_message("COPIED: #{snip.path}")
         end
 
         CLI::Presenters.show(snip)
@@ -46,8 +46,8 @@ module Snippet
       #
       def self.list(
         lang,
-        copy,
-        vars = []
+        _copy,
+        _vars = []
       )
         snippet_dir = Snippet::CLI.snip_dir
 
@@ -63,21 +63,22 @@ module Snippet
       # Show snippet directory path
       #
       def self.snippet_path(
-        lang,
-        copy,
-        vars = []
+        _lang,
+        _copy,
+        _vars = []
       )
         CLI.print_message("SNIPPET_DIR: #{CLI.snip_dir}")
       end
     end
 
+    # CLI Presentation functions
     module Presenters
       def self.pick_from(question, snips)
         prompt = TTY::Prompt.new
 
         choice = prompt.select(
           question,
-          snips.map { |snip| snip.path }
+          snips.map(&:path)
         )
 
         snips.find { |snip| snip.path == choice }
@@ -88,10 +89,10 @@ module Snippet
       end
 
       def self.list_snippets(snippets)
-        result_header = ['NAME', 'LANG', 'PATH']
+        result_header = %w[NAME LANG PATH]
 
         results = TTY::Table.new(
-          result_header, 
+          result_header,
           snippets.map do |snippet|
             [
               snippet.name,
@@ -100,7 +101,7 @@ module Snippet
             ]
           end
         )
-        
+
         puts results.render(:ascii)
       end
     end
@@ -113,7 +114,9 @@ module Snippet
       def snip_dir
         @snippet_dir = ENV['SNIPPET_DIR']
         raise 'SNIPPET_DIR environment variable not set' unless @snippet_dir
-        raise "SNIPPET_DIR #{@snippet_dir} does not exist" unless File.exist?(@snippet_dir)
+        unless File.exist?(@snippet_dir)
+          raise "SNIPPET_DIR #{@snippet_dir} does not exist"
+        end
 
         @snippet_dir
       end

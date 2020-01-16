@@ -9,16 +9,15 @@ RSpec.describe Snippet::CLI::Commands do
   before do
     allow(ENV)
       .to receive(:[]).with('SNIPPET_DIR')
-      .and_return(snippet_dir)
+                      .and_return(snippet_dir)
 
     allow(File)
       .to receive(:exist?)
-      .with(snippet_dir) 
+      .with(snippet_dir)
       .and_return(true)
   end
 
   describe '.show' do
-    
   end
 
   describe '.list' do
@@ -146,9 +145,9 @@ RSpec.describe Snippet::CLI::Presenters do
 
     it 'sets up render' do
       expect(TTY::Table).to have_received(:new).with(
-        ['NAME', 'LANG', 'PATH'],
+        %w[NAME LANG PATH],
         [
-          [name, ext, path], 
+          [name, ext, path],
           [name, ext, path]
         ]
       )
@@ -170,7 +169,7 @@ RSpec.describe Snippet::CLI do
 
   describe '.snip_dir' do
     let(:snippet_dir) { 'path/to/snippets' }
-    let(:exists) { true}
+    let(:exists) { true }
 
     before do
       allow(ENV)

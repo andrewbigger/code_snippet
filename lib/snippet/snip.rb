@@ -1,4 +1,5 @@
 module Snippet
+  # Snip is a file with a code snippet
   class Snip
     attr_reader :path, :ext
 
@@ -26,7 +27,8 @@ module Snippet
 
     def content
       raise 'cannot read snippet code' unless exist?
+
       File.read(@path)
     end
-  end 
+  end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Snippet::Snip do
   let(:file_name) { 'snippet-file' }
   let(:file_ext) { '.ext' }
-  let(:path) { "path/to/#{file_name}#{file_ext}"}
+  let(:path) { "path/to/#{file_name}#{file_ext}" }
 
   describe '.new_from_file' do
     before do

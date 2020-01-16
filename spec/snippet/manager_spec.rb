@@ -23,10 +23,10 @@ RSpec.describe Snippet::Manager do
 
     before do
       allow(File).to receive(:directory?).with(directory)
-        .and_return(true)
+                                         .and_return(true)
 
       allow(File).to receive(:directory?).with(file)
-        .and_return(false)
+                                         .and_return(false)
 
       allow(Dir).to receive(:glob).and_return(files)
       allow(Snippet::Snip).to receive(:new_from_file)
@@ -102,11 +102,11 @@ RSpec.describe Snippet::Manager do
         snip,
         snip,
         target_snip,
-        almost_target_snip,
+        almost_target_snip
       ]
     end
 
-    before do 
+    before do
       subject.instance_variable_set(:@snippets, snips)
       @result = subject.find(search_term, lang)
     end
@@ -148,11 +148,11 @@ RSpec.describe Snippet::Manager do
         snip,
         snip,
         target_snip,
-        another_target_snip,
+        another_target_snip
       ]
     end
 
-    before do 
+    before do
       subject.instance_variable_set(:@snippets, snips)
       @result = subject.filter_by_extension(lang)
     end

@@ -1,7 +1,8 @@
 module Snippet
+  # Manager looks after a set of snippets
   class Manager
-    DEFAULT_QUERY = ->(snip) { return true }
-    
+    DEFAULT_QUERY = ->(_snip) { return true }
+
     attr_reader :snippets
 
     def initialize(snippet_dir)
@@ -17,14 +18,14 @@ module Snippet
       end
     end
 
-    def filter(query = DEFAULT_QUERY )
+    def filter(query = DEFAULT_QUERY)
       @snippets.select do |snip|
         query.call(snip)
       end
     end
 
     def find(search_term, lang = nil)
-      name_query = -> (snip) do
+      name_query = lambda do |snip|
         snip.name.include?(search_term)
       end
 
@@ -42,7 +43,7 @@ module Snippet
     def filter_by_extension(ext)
       ext = ".#{ext}" unless ext.start_with?('.')
 
-      ext_query = -> (snip) { snip.ext == ext }
+      ext_query = ->(snip) { snip.ext == ext }
       filter(ext_query)
     end
   end
