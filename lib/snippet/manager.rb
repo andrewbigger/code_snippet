@@ -23,12 +23,17 @@ module Snippet
       end
     end
 
-    def find(search_term, lang)
-      name_query = -> (snip) { snip.name.include?(search_term) }
-      
+    def find(search_term, lang = nil)
+      name_query = -> (snip) do
+        snip.name.include?(search_term)
+      end
+
       results = filter(name_query)
+
       unless lang.nil?
-        results = results.select { |snip| snip.ext }
+        results = results.select do |snip|
+          snip.ext == lang
+        end
       end
 
       results
