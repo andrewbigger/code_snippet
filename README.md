@@ -1,6 +1,6 @@
 # Snippet
 
-A code snippet handling tool
+A code snippet handling tool that makes it easy to quickly access chunks of code.
 
 ## Installation
 
@@ -13,7 +13,46 @@ gem install snippet*.gem
 
 ## Usage
 
-TODO
+### Before you begin
+
+Before you use snippet, you need to set the `SNIPPET_DIR` environment variable to a path that contains your snippets:
+
+```bash
+export SNIPPET_DIR="/Users/me/Code/snippets"
+```
+
+### Creating snippets
+
+Snippets are just text files with the extension of the target language. For example, `for_i.go` might ontain a for loop.
+
+The code does not need to compile or be able to be interpreted for it to be displayed by snippet, it should be content that's easy to paste into the project you're currently working on.
+
+### Listing and Viewing Snippets
+
+Once you have a set of snippets, run `snippet list` to show a list of all your snippets:
+
+```bash
+$ snippet list
+
++---------------------+----+-----------------------------------------------------------------+
+|NAME                 |LANG|PATH                                                             |
++---------------------+----+-----------------------------------------------------------------+
+|for_i                |.go |/Users/me/Code/templates/snippets/golang/for_i.go                |
+|table_test           |.go |/Users/me/Code/templates/snippets/golang/table_test.go           |
++---------------------+----+-----------------------------------------------------------------+
+```
+
+You can then show a snippet by executing `snippet show <name>`:
+
+```bash
+$ snippet show for_i
+
+for 1 := 1; i < 10; i++ {
+  // do something
+}
+```
+
+You can copy the snippet straight to the clipboard by adding the `-c=true` to the end of the command.
 
 ## Licence
 
