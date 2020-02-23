@@ -10,7 +10,7 @@ RSpec.describe Snippet::CLI::Presenters do
   let(:content) { 'snip-content' }
 
   before do
-    allow(described_class).to receive(:puts).and_return(double)
+    allow(Snippet::CLI).to receive(:print_message).and_return(double)
     allow(snip).to receive(:name).and_return(name)
     allow(snip).to receive(:ext).and_return(ext)
     allow(snip).to receive(:path).and_return(path)
@@ -43,7 +43,7 @@ RSpec.describe Snippet::CLI::Presenters do
     end
 
     it 'puts content to STDOUT' do
-      expect(described_class).to have_received(:puts).with(content)
+      expect(Snippet::CLI).to have_received(:print_message).with(content)
     end
   end
 

@@ -18,7 +18,7 @@ module Snippet
       end
 
       def self.show(snip)
-        puts snip.content
+        CLI.print_message(snip.content)
       end
 
       def self.list_snippets(snippets)
@@ -35,7 +35,7 @@ module Snippet
           end
         )
 
-        puts results.render(:ascii)
+        CLI.print_message(results.render(:ascii))
       end
     end
   end
