@@ -18,8 +18,7 @@ module Snippet
     end
 
     def name
-      @path
-        .gsub("#{CLI.snip_dir}/", '')
+      @name
         .gsub(@ext, '')
     end
 
