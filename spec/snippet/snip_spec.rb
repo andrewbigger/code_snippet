@@ -3,16 +3,20 @@ require 'spec_helper'
 RSpec.describe Snippet::Snip do
   let(:file_name) { 'snippet-file' }
   let(:file_ext) { '.ext' }
-  let(:path) { "path/to/#{file_name}#{file_ext}" }
-
+  let(:snip_dir) { 'path/to/snippets' }
+  let(:path) { "#{snip_dir}/path/to/#{file_name}#{file_ext}" }
+  let(:expected_name) { "path/to/#{file_name}" }
   describe '.new_from_file' do
     before do
+      allow(Snippet::CLI).to receive(:snip_dir)
+        .and_return(snip_dir)
+
       @snip = described_class.new_from_file(path)
     end
 
     it 'creates snip from path' do
       expect(@snip.path).to eq path
-      expect(@snip.name).to eq file_name
+      expect(@snip.name).to eq expected_name
       expect(@snip.ext).to eq file_ext
     end
   end
@@ -20,8 +24,13 @@ RSpec.describe Snippet::Snip do
   subject { described_class.new_from_file(path) }
 
   describe '#name' do
-    it 'returns name without file extension' do
-      expect(subject.name).to eq file_name
+    before do
+      allow(Snippet::CLI).to receive(:snip_dir)
+        .and_return(snip_dir)
+    end
+
+    it 'returns file name without snip_dir or file extension' do
+      expect(subject.name).to eq expected_name
     end
   end
 

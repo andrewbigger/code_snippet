@@ -18,7 +18,9 @@ module Snippet
     end
 
     def name
-      @name.gsub(@ext, '')
+      @path
+        .gsub("#{CLI.snip_dir}/", '')
+        .gsub(@ext, '')
     end
 
     def exist?
