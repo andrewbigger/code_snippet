@@ -15,16 +15,16 @@ USAGE = "Snippet is a CLI tool for quick access to code snippets
 
 Usage:\tsnippet <command> <variables> <opts>
 Options:
-  \t--trace\t\t trace mode on
+  \s\s\s\s--trace\t\t trace mode on
   -l, --language\t snippet language filter
   -c, --copy\t\t copy snippet to clipboard
 
   -h, --help\t\t print usage
 
 Commands:
-  show\t finds and shows snippet
-  list\t displays a list of snippets
-  path\t displays configured snippet path
+  show\t\t\t finds and shows snippet
+  list\t\t\t displays a list of snippets
+  path\t\t\t displays configured snippet path
 ".freeze
 
 @trace = false
