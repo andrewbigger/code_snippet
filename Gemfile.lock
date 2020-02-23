@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    snippet (0.0.2)
+    snippet (0.0.3)
       clipboard
       ffi
       hashie
