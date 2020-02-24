@@ -83,7 +83,22 @@ RSpec.describe Snippet::CLI::Commands do
 
     it 'prints snippet dir' do
       expect(Snippet::CLI).to have_received(:print_message)
-        .with("SNIPPET_DIR: #{snippet_dir}")
+        .with(snippet_dir)
+    end
+  end
+
+  describe '.version' do
+    before do
+      allow(Snippet::CLI)
+        .to receive(:print_message)
+        .and_return(nil)
+
+      described_class.version(lang, copy, vars)
+    end
+
+    it 'prints snippet version' do
+      expect(Snippet::CLI).to have_received(:print_message)
+        .with(Snippet::VERSION)
     end
   end
 end

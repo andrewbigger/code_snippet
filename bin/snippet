@@ -24,7 +24,9 @@ Options:
 Commands:
   show\t\t\t finds and shows snippet
   list\t\t\t displays a list of snippets
-  path\t\t\t displays configured snippet path
+
+  path\t\t\t prints configured SNIPPET_DIR
+  version\t\t prints gem version
 ".freeze
 
 @trace = false

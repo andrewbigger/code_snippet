@@ -64,7 +64,18 @@ module Snippet
         _copy,
         _args = []
       )
-        CLI.print_message("SNIPPET_DIR: #{CLI.snip_dir}")
+        CLI.print_message(CLI.snip_dir)
+      end
+
+      ##
+      # Show snippet gem version
+      #
+      def self.version(
+        _lang,
+        _copy,
+        _args = []
+      )
+        CLI.print_message(Snippet::VERSION)
       end
     end
   end
