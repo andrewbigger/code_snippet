@@ -9,8 +9,6 @@ require 'highline'
 require 'snippet'
 require 'snippet/cli'
 
-require 'byebug'
-
 USAGE = "Snippet is a CLI tool for quick access to code snippets
 
 Usage:\tsnippet <command> <variables> <opts>
