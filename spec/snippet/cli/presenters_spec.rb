@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-RSpec.describe Snippet::CLI::Presenters do
+RSpec.describe CodeSnippet::CLI::Presenters do
   let(:snippets) { [snip, snip] }
 
-  let(:snip) { double(Snippet::Snip) }
+  let(:snip) { double(CodeSnippet::Snip) }
   let(:name) { 'snippet' }
   let(:ext) { '.snip' }
   let(:path) { 'path/to/snippet' }
   let(:content) { 'snip-content' }
 
   before do
-    allow(Snippet::CLI).to receive(:print_message).and_return(double)
+    allow(CodeSnippet::CLI).to receive(:print_message).and_return(double)
     allow(snip).to receive(:name).and_return(name)
     allow(snip).to receive(:ext).and_return(ext)
     allow(snip).to receive(:path).and_return(path)
@@ -43,7 +43,7 @@ RSpec.describe Snippet::CLI::Presenters do
     end
 
     it 'puts content to STDOUT' do
-      expect(Snippet::CLI).to have_received(:print_message).with(content)
+      expect(CodeSnippet::CLI).to have_received(:print_message).with(content)
     end
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Snippet::CLI do
+RSpec.describe CodeSnippet::CLI do
   let(:logger) { double(Logger) }
   let(:message) { 'lorem ipsum' }
 

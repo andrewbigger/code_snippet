@@ -6,8 +6,8 @@ require 'rubygems'
 require 'optparse'
 require 'highline'
 
-require 'snippet'
-require 'snippet/cli'
+require 'code_snippet'
+require 'code_snippet/cli'
 
 USAGE = "Snippet is a CLI tool for quick access to code snippets
 
@@ -38,7 +38,7 @@ OptionParser.new do |opts|
   opts.on('-c', '--copy BOOL')        { @copy = true }
 
   opts.on_tail('-h', '--help') do
-    Snippet::CLI.print_message_and_exit(USAGE)
+    CodeSnippet::CLI.print_message_and_exit(USAGE)
   end
 end.parse!
 
@@ -46,17 +46,17 @@ begin
   raise 'ERROR: no command provided' unless ARGV[0]
 
   cmd = ARGV.shift
-  Snippet::CLI::Commands.public_send(
+  CodeSnippet::CLI::Commands.public_send(
     cmd.to_sym,
     @lang,
     !@copy.nil?,
     ARGV
   )
 rescue StandardError => e
-  Snippet::CLI.print_message(e)
-  Snippet::CLI.print_message(e.backtrace) if @trace
-  Snippet::CLI.print_message("\n")
-  Snippet::CLI.print_message_and_exit(USAGE)
+  CodeSnippet::CLI.print_message(e)
+  CodeSnippet::CLI.print_message(e.backtrace) if @trace
+  CodeSnippet::CLI.print_message("\n")
+  CodeSnippet::CLI.print_message_and_exit(USAGE)
 end
 
 exit(0)

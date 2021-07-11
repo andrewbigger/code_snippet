@@ -14,8 +14,8 @@ SimpleCov.configure do
   minimum_coverage 10
 end
 
-require 'snippet'
-require 'snippet/cli'
+require 'code_snippet'
+require 'code_snippet/cli'
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'

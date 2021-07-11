@@ -1,4 +1,4 @@
-module Snippet
+module CodeSnippet
   # Snip is a file with a code snippet
   class Snip
     attr_reader :path, :ext

@@ -1,6 +1,6 @@
 require 'clipboard'
 
-module Snippet
+module CodeSnippet
   # Command line interface helpers and actions
   module CLI
     # CLI Actions
@@ -14,9 +14,9 @@ module Snippet
         args = []
       )
         name = args.first
-        snippet_dir = Snippet::CLI.snip_dir
+        snippet_dir = CodeSnippet::CLI.snip_dir
 
-        manager = Snippet::Manager.new(snippet_dir)
+        manager = CodeSnippet::Manager.new(snippet_dir)
         manager.load_snippets
 
         snips = manager.find(name, lang)
@@ -46,9 +46,9 @@ module Snippet
         _copy,
         _args = []
       )
-        snippet_dir = Snippet::CLI.snip_dir
+        snippet_dir = CodeSnippet::CLI.snip_dir
 
-        manager = Snippet::Manager.new(snippet_dir)
+        manager = CodeSnippet::Manager.new(snippet_dir)
         manager.load_snippets
 
         snippets = lang ? manager.filter_by_extension(lang) : manager.snippets
@@ -75,7 +75,7 @@ module Snippet
         _copy,
         _args = []
       )
-        CLI.print_message(Snippet::VERSION)
+        CLI.print_message(CodeSnippet::VERSION)
       end
     end
   end

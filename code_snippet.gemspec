@@ -2,11 +2,11 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'snippet/version'
+require 'code_snippet/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'snippet'
-  spec.version       = Snippet::VERSION
+  spec.name          = 'code_snippet'
+  spec.version       = CodeSnippet::VERSION
   spec.authors       = ['Andrew Bigger']
   spec.email         = ['andrew@biggerconcept.com']
   spec.summary       = 'A code snippet handling tool'
@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'byebug', '~> 11.0'
   spec.add_development_dependency 'private_gem', '~> 1.1'
   spec.add_development_dependency 'pry', '~> 0.11'
-  spec.add_development_dependency 'puma', '~> 4.3'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.7', '>= 3.7.0'
   spec.add_development_dependency 'rubocop', '~> 0.58'

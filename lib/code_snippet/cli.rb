@@ -1,9 +1,9 @@
-require 'snippet/cli/commands'
-require 'snippet/cli/presenters'
+require 'code_snippet/cli/commands'
+require 'code_snippet/cli/presenters'
 
 require 'logger'
 
-module Snippet
+module CodeSnippet
   # Command line interface helpers and actions
   module CLI
     # CLI Helpers

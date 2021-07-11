@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Snippet::Manager do
+RSpec.describe CodeSnippet::Manager do
   let(:snippet_dir) { 'path/to/snippets' }
 
   subject do
@@ -11,7 +11,7 @@ RSpec.describe Snippet::Manager do
     let(:directory) { File.join(snippet_dir, 'path/to/dir') }
     let(:file)      { File.join(snippet_dir, 'path/to/dir/file') }
 
-    let(:file_snip) { double(Snippet::Snip) }
+    let(:file_snip) { double(CodeSnippet::Snip) }
     let(:files) do
       [
         directory,
@@ -29,7 +29,7 @@ RSpec.describe Snippet::Manager do
                                          .and_return(false)
 
       allow(Dir).to receive(:glob).and_return(files)
-      allow(Snippet::Snip).to receive(:new_from_file)
+      allow(CodeSnippet::Snip).to receive(:new_from_file)
         .and_return(file_snip)
 
       subject.load_snippets
@@ -49,8 +49,8 @@ RSpec.describe Snippet::Manager do
       ->(snip) { snip == target_snip }
     end
 
-    let(:snip) { double(Snippet::Snip) }
-    let(:target_snip) { double(Snippet::Snip) }
+    let(:snip) { double(CodeSnippet::Snip) }
+    let(:target_snip) { double(CodeSnippet::Snip) }
 
     let(:snips) do
       [
@@ -86,15 +86,15 @@ RSpec.describe Snippet::Manager do
     let(:lang) { '.rb' }
 
     let(:snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'snip.rb', '.rb')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'snip.rb', '.rb')
     end
 
     let(:target_snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'foo.rb', '.rb')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'foo.rb', '.rb')
     end
 
     let(:almost_target_snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'foo.go', '.go')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'foo.go', '.go')
     end
 
     let(:snips) do
@@ -132,15 +132,15 @@ RSpec.describe Snippet::Manager do
     let(:lang) { '.rb' }
 
     let(:snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'snip.go', '.go')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'snip.go', '.go')
     end
 
     let(:target_snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'foo.rb', '.rb')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'foo.rb', '.rb')
     end
 
     let(:another_target_snip) do
-      Snippet::Snip.new('path/to/snip.rb', 'bar.rb', '.rb')
+      CodeSnippet::Snip.new('path/to/snip.rb', 'bar.rb', '.rb')
     end
 
     let(:snips) do

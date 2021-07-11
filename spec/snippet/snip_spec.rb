@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Snippet::Snip do
+RSpec.describe CodeSnippet::Snip do
   let(:file_name) { 'snippet-file' }
   let(:file_ext) { '.ext' }
   let(:snip_dir) { 'path/to/snippets' }
@@ -8,7 +8,7 @@ RSpec.describe Snippet::Snip do
 
   describe '.new_from_file' do
     before do
-      allow(Snippet::CLI).to receive(:snip_dir)
+      allow(CodeSnippet::CLI).to receive(:snip_dir)
         .and_return(snip_dir)
 
       @snip = described_class.new_from_file(path)

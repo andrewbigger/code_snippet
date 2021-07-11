@@ -1,4 +1,4 @@
-# Snippet
+# CodeSnippet
 
 A code snippet handling tool that makes it easy to quickly access chunks of code.
 

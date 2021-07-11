@@ -16,5 +16,5 @@
   
   Metrics/BlockLength:
     Exclude:
-      - 'snippet.gemspec'
+      - 'code_snippet.gemspec'
       - 'spec/**/*'

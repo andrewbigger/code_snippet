@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Snippet::CLI::Commands do
+RSpec.describe CodeSnippet::CLI::Commands do
   let(:snippet_dir) { 'path/to/snippets' }
   let(:lang) { '.rb' }
   let(:copy) { false }
@@ -21,18 +21,18 @@ RSpec.describe Snippet::CLI::Commands do
   end
 
   describe '.list' do
-    let(:manager) { double(Snippet::Manager) }
+    let(:manager) { double(CodeSnippet::Manager) }
     let(:lang) { nil }
 
-    let(:snip) { double(Snippet::Snip) }
+    let(:snip) { double(CodeSnippet::Snip) }
     let(:filtered_snips) { [snip, snip] }
     let(:all_snips) { [snip, snip, snip, snip] }
 
     before do
-      allow(Snippet::CLI).to receive(:snip_dir)
+      allow(CodeSnippet::CLI).to receive(:snip_dir)
         .and_return('path/to/snips')
 
-      allow(Snippet::Manager)
+      allow(CodeSnippet::Manager)
         .to receive(:new)
         .and_return(manager)
 
@@ -45,7 +45,7 @@ RSpec.describe Snippet::CLI::Commands do
         .to receive(:snippets)
         .and_return(all_snips)
 
-      allow(Snippet::CLI::Presenters)
+      allow(CodeSnippet::CLI::Presenters)
         .to receive(:list_snippets)
 
       described_class.list(lang, copy, vars)
@@ -56,7 +56,7 @@ RSpec.describe Snippet::CLI::Commands do
     end
 
     it 'presents a list of snippets' do
-      expect(Snippet::CLI::Presenters)
+      expect(CodeSnippet::CLI::Presenters)
         .to have_received(:list_snippets)
         .with(all_snips)
     end
@@ -65,7 +65,7 @@ RSpec.describe Snippet::CLI::Commands do
       let(:lang) { '.rb' }
 
       it 'presents a list of filtered snippets' do
-        expect(Snippet::CLI::Presenters)
+        expect(CodeSnippet::CLI::Presenters)
           .to have_received(:list_snippets)
           .with(filtered_snips)
       end
@@ -74,7 +74,7 @@ RSpec.describe Snippet::CLI::Commands do
 
   describe '.path' do
     before do
-      allow(Snippet::CLI)
+      allow(CodeSnippet::CLI)
         .to receive(:print_message)
         .and_return(nil)
 
@@ -82,14 +82,14 @@ RSpec.describe Snippet::CLI::Commands do
     end
 
     it 'prints snippet dir' do
-      expect(Snippet::CLI).to have_received(:print_message)
+      expect(CodeSnippet::CLI).to have_received(:print_message)
         .with(snippet_dir)
     end
   end
 
   describe '.version' do
     before do
-      allow(Snippet::CLI)
+      allow(CodeSnippet::CLI)
         .to receive(:print_message)
         .and_return(nil)
 
@@ -97,8 +97,8 @@ RSpec.describe Snippet::CLI::Commands do
     end
 
     it 'prints snippet version' do
-      expect(Snippet::CLI).to have_received(:print_message)
-        .with(Snippet::VERSION)
+      expect(CodeSnippet::CLI).to have_received(:print_message)
+        .with(CodeSnippet::VERSION)
     end
   end
 end

@@ -1,4 +1,4 @@
-module Snippet
+module CodeSnippet
   # Manager looks after a set of snippets
   class Manager
     DEFAULT_QUERY = ->(_snip) { return true }
@@ -14,7 +14,7 @@ module Snippet
       Dir.glob(File.join(@snippet_dir, '**', '*')).each do |file|
         next if File.directory?(file)
 
-        @snippets << Snippet::Snip.new_from_file(file)
+        @snippets << CodeSnippet::Snip.new_from_file(file)
       end
     end
 

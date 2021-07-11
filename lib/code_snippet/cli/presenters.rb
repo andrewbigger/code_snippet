@@ -1,7 +1,7 @@
 require 'tty-table'
 require 'tty-prompt'
 
-module Snippet
+module CodeSnippet
   # Command line interface helpers and actions
   module CLI
     # CLI Presentation functions
