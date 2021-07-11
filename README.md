@@ -1,5 +1,7 @@
 # CodeSnippet
 
+[![Ruby](https://github.com/andrewbigger/code_snippet/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/andrewbigger/code_snippet/actions/workflows/build.yml)
+
 A code snippet handling tool that makes it easy to quickly access chunks of code.
 
 ## Installation
@@ -7,8 +9,7 @@ A code snippet handling tool that makes it easy to quickly access chunks of code
 Install the gem into your system:
 
 ```bash
-gem build
-gem install snippet*.gem
+gem install code_snippet
 ```
 
 ## Usage
@@ -54,6 +55,24 @@ for 1 := 1; i < 10; i++ {
 
 You can copy the snippet straight to the clipboard by adding the `-c=true` to the end of the command.
 
+## Tests and Quality
+
+Tests cover this project and are written in RSpec. You'll find them in the spec folder.
+
+```bash
+bundle exec rspec spec
+```
+
+Tests and quality tasks are included in the default rake task which can be run thus:
+
+```bash
+bundle exec rake
+```
+
+## Contributing
+
+See CONTRIBUTING.md for more information
+
 ## Licence
 
-Private licence. Gem is not for redistribution
+This gem is covered by the terms of the MIT licence. See LICENCE for more information
