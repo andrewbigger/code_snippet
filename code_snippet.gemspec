@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.name          = 'code_snippet'
   spec.version       = CodeSnippet::VERSION
   spec.authors       = ['Andrew Bigger']
-  spec.email         = ['andrew@biggerconcept.com']
+  spec.email         = ['andrew.bigger@gmail.com']
   spec.summary       = 'A code snippet handling tool'
-  spec.homepage      = 'https://bitbucket.org/biggerconcept/snippet'
+  spec.homepage      = 'https://github.com/andrewbigger/code_snippet'
   spec.license       = 'Private'
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -28,7 +28,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bump', '~> 0.6'
   spec.add_development_dependency 'byebug', '~> 11.0'
-  spec.add_development_dependency 'private_gem', '~> 1.1'
   spec.add_development_dependency 'pry', '~> 0.11'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.7', '>= 3.7.0'
