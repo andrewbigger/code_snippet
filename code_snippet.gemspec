@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['andrew.bigger@gmail.com']
   spec.summary       = 'A code snippet handling tool'
   spec.homepage      = 'https://github.com/andrewbigger/code_snippet'
-  spec.license       = 'Private'
+  spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
