@@ -66,17 +66,6 @@ module CodeSnippet
       )
         CLI.print_message(CLI.snip_dir)
       end
-
-      ##
-      # Show snippet gem version
-      #
-      def self.version(
-        _lang,
-        _copy,
-        _args = []
-      )
-        CLI.print_message(CodeSnippet::VERSION)
-      end
     end
   end
 end

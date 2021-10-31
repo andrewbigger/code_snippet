@@ -1,25 +1,58 @@
-require 'code_snippet/cli/commands'
-require 'code_snippet/cli/presenters'
-
+require 'thor'
 require 'logger'
+
+require 'code_snippet'
+require 'code_snippet/commands'
 
 module CodeSnippet
   # Command line interface helpers and actions
-  module CLI
+  class CLI < ::Thor
+    package_name 'CodeSnippet'
+
+    desc 'version', 'Print code snippet version to STDOUT'
+
+    ##
+    # Runs version command
+    #
+    def version
+      cmd = CodeSnippet::Commands::PrintVersion.new(options)
+      cmd.run
+    end
+
+    map %w[--version -v] => :version
+
+    desc 'path', 'Print snippet directory path to STDOUT'
+
+    ##
+    # Runs version command
+    #
+    def path
+      cmd = CodeSnippet::Commands::PrintPath.new(snip_dir, options)
+      cmd.run
+    end
+
+    protected
+
+    ##
+    # Retrieves snippet dir from environment
+    #
+    def snip_dir
+      @snippet_dir = ENV['SNIPPET_DIR']
+
+      unless @snippet_dir
+        raise 'SNIPPET_DIR environment variable not set' 
+      end
+      
+      unless File.exist?(@snippet_dir)
+        raise "SNIPPET_DIR #{@snippet_dir} does not exist"
+      end
+
+      @snippet_dir
+    end
+
     # CLI Helpers
     class <<self
-      ##
-      # Retrieves snippet dir from environment
-      #
-      def snip_dir
-        @snippet_dir = ENV['SNIPPET_DIR']
-        raise 'SNIPPET_DIR environment variable not set' unless @snippet_dir
-        unless File.exist?(@snippet_dir)
-          raise "SNIPPET_DIR #{@snippet_dir} does not exist"
-        end
-
-        @snippet_dir
-      end
+      
 
       ##
       # Creates logger for printing messages
