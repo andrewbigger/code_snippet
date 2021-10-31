@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'hashie'
   spec.add_dependency 'highline', '~> 2.0'
   spec.add_dependency 'logger', '~> 1.4'
+  spec.add_dependency 'thor'
   spec.add_dependency 'tty-prompt'
   spec.add_dependency 'tty-table'
 

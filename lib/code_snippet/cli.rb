@@ -64,7 +64,6 @@ module CodeSnippet
       cmd.run
     end
 
-
     protected
 
     ##
@@ -73,9 +72,7 @@ module CodeSnippet
     def snip_dir
       @snippet_dir = ENV['SNIPPET_DIR']
 
-      unless @snippet_dir
-        raise 'SNIPPET_DIR environment variable not set' 
-      end
+      raise 'SNIPPET_DIR environment variable not set' unless @snippet_dir
 
       unless File.exist?(@snippet_dir)
         raise "SNIPPET_DIR #{@snippet_dir} does not exist"
@@ -94,38 +91,6 @@ module CodeSnippet
       @manager.load
 
       @manager
-    end
-
-    # CLI Helpers
-    class <<self
-      
-
-      ##
-      # Creates logger for printing messages
-      #
-      def logger
-        @logger ||= Logger.new(STDOUT)
-        @logger.formatter = proc do |_sev, _time, _prog, msg|
-          "#{msg}\n"
-        end
-
-        @logger
-      end
-
-      ##
-      # Prints command line message to CLI
-      #
-      def print_message(message)
-        logger.info(message)
-      end
-
-      ##
-      # Prints a message and then exits with given status code
-      #
-      def print_message_and_exit(message, exit_code = 1)
-        print_message(message)
-        exit(exit_code)
-      end
     end
   end
 end

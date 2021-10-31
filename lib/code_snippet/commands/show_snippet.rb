@@ -20,9 +20,25 @@ module CodeSnippet
           @manager.snippet_names
         )
 
+        snips = find_snippets(name)
+        snip = pick_snippet(snips)
+
+        if @options.copy
+          Clipboard.copy(snip.content)
+          puts "COPIED: #{snip.path}"
+        end
+
+        puts snip.content
+      end
+
+      private
+
+      def find_snippets(name)
         snips = @manager.find(name)
         raise "unable to find #{name}" if snips.empty?
+      end
 
+      def pick_snippet(snips)
         snip = snips.first
         if snips.length > 1
           snip_name = @prompt.select(
@@ -33,12 +49,7 @@ module CodeSnippet
           snip = @manager.find(snip_name).first
         end
 
-        if @options.copy
-          Clipboard.copy(snip.content)
-          puts "COPIED: #{snip.path}"
-        end
-
-        puts snip.content
+        snip
       end
     end
   end
