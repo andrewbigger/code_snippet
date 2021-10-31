@@ -7,7 +7,7 @@ RSpec.describe CodeSnippet::Manager do
     described_class.new(snippet_dir)
   end
 
-  describe '#load_snippets' do
+  describe '#load' do
     let(:directory) { File.join(snippet_dir, 'path/to/dir') }
     let(:file)      { File.join(snippet_dir, 'path/to/dir/file') }
 
@@ -32,7 +32,7 @@ RSpec.describe CodeSnippet::Manager do
       allow(CodeSnippet::Snip).to receive(:new_from_file)
         .and_return(file_snip)
 
-      subject.load_snippets
+      subject.load
     end
 
     it 'creates snips from files' do

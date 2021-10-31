@@ -31,6 +31,40 @@ module CodeSnippet
       cmd.run
     end
 
+    desc 'show', 'Find and show snippet'
+
+    method_option(
+      :name,
+      type: :string,
+      desc: 'Name of snippet'
+    )
+
+    method_option(
+      :copy,
+      type: :boolean,
+      desc: 'Should copy snippet to clipboard',
+      default: false
+    )
+
+    ##
+    # Show snippet command
+    #
+    def show
+      cmd = CodeSnippet::Commands::ShowSnippet.new(manager, options)
+      cmd.run
+    end
+
+    desc 'list', 'List all known snippets'
+
+    ##
+    # Show snippet command
+    #
+    def list
+      cmd = CodeSnippet::Commands::ListSnippets.new(manager, options)
+      cmd.run
+    end
+
+
     protected
 
     ##
@@ -42,12 +76,24 @@ module CodeSnippet
       unless @snippet_dir
         raise 'SNIPPET_DIR environment variable not set' 
       end
-      
+
       unless File.exist?(@snippet_dir)
         raise "SNIPPET_DIR #{@snippet_dir} does not exist"
       end
 
       @snippet_dir
+    end
+
+    ##
+    # Loads and creates snippet manager
+    #
+    # @return [CodeSnippet::Manager]
+    #
+    def manager
+      @manager ||= CodeSnippet::Manager.new(snip_dir)
+      @manager.load
+
+      @manager
     end
 
     # CLI Helpers

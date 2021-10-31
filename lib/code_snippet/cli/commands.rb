@@ -56,16 +56,6 @@ module CodeSnippet
         CLI::Presenters.list_snippets(snippets)
       end
 
-      ##
-      # Show snippet directory path
-      #
-      def self.path(
-        _lang,
-        _copy,
-        _args = []
-      )
-        CLI.print_message(CLI.snip_dir)
-      end
     end
   end
 end

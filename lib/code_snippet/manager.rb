@@ -10,7 +10,7 @@ module CodeSnippet
       @snippets = []
     end
 
-    def load_snippets
+    def load
       Dir.glob(File.join(@snippet_dir, '**', '*')).each do |file|
         next if File.directory?(file)
 
@@ -45,6 +45,10 @@ module CodeSnippet
 
       ext_query = ->(snip) { snip.ext == ext }
       filter(ext_query)
+    end
+
+    def snippet_names
+      @snippets.map(&:name)
     end
   end
 end
