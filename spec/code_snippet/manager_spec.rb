@@ -183,7 +183,7 @@ RSpec.describe CodeSnippet::Manager do
     end
 
     it 'returns array of snippet names' do
-      expect(@result).to eq ['snip', 'snip', 'snip']
+      expect(@result).to eq %w[snip snip snip]
     end
   end
 end

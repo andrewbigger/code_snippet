@@ -4,7 +4,7 @@ RSpec.describe CodeSnippet::CLI do
   let(:options) { Hashie::Mash.new }
   let(:snip_dir) { 'path/to/snippets' }
   let(:snip_exist) { true }
- 
+
   subject { described_class.new }
 
   before do
@@ -39,14 +39,14 @@ RSpec.describe CodeSnippet::CLI do
 
     before do
       allow(ENV)
-      .to receive(:[])
-      .with('SNIPPET_DIR')
-      .and_return(snip_dir)
+        .to receive(:[])
+        .with('SNIPPET_DIR')
+        .and_return(snip_dir)
 
-    allow(File)
-      .to receive(:exist?)
-      .with(snip_dir)
-      .and_return(snip_exist)
+      allow(File)
+        .to receive(:exist?)
+        .with(snip_dir)
+        .and_return(snip_exist)
 
       allow(command).to receive(:run)
       allow(CodeSnippet::Commands::PrintPath)

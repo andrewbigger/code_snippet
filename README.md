@@ -35,12 +35,9 @@ Once you have a set of snippets, run `snippet list` to show a list of all your s
 ```bash
 $ snippet list
 
-+---------------------+----+-----------------------------------------------------------------+
-|NAME                 |LANG|PATH                                                             |
-+---------------------+----+-----------------------------------------------------------------+
-|for_i                |.go |/Users/me/Code/templates/snippets/golang/for_i.go                |
-|table_test           |.go |/Users/me/Code/templates/snippets/golang/table_test.go           |
-+---------------------+----+-----------------------------------------------------------------+
+NAME                          LANG
+for_i                         .go 
+table_test                    .go
 ```
 
 You can then show a snippet by executing `snippet show <name>`:
@@ -53,7 +50,7 @@ for 1 := 1; i < 10; i++ {
 }
 ```
 
-You can copy the snippet straight to the clipboard by adding the `-c=true` to the end of the command.
+You can copy the snippet straight to the clipboard by adding the `--copy` to the end of the command.
 
 ## Tests and Quality
 

@@ -26,7 +26,7 @@ RSpec.describe CodeSnippet::Commands::ShowSnippet do
         path: snip_path
       )
     end
-    
+
     let(:found_snips) { [snip, snip] }
     let(:snip_content) { 'snippet content' }
     let(:snip_names) { [snip_name, snip_name] }
@@ -79,7 +79,7 @@ RSpec.describe CodeSnippet::Commands::ShowSnippet do
 
     context 'when name option is not provided' do
       let(:options) { Hashie::Mash.new }
-      
+
       it 'asks user to choose snippet' do
         expect(prompt)
           .to have_received(:select)
@@ -179,7 +179,7 @@ RSpec.describe CodeSnippet::Commands::ShowSnippet do
             [snip_name, snip_name]
           )
       end
-      
+
       it 'finds snippet' do
         expect(manager).to have_received(:find).with(snip_name)
       end
