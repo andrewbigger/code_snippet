@@ -20,7 +20,7 @@ module CodeSnippet
       # Prints a list of snippets to STDOUT
       #
       def run
-        puts(snippet_list_table)
+        puts(snippet_list_table.render.strip)
       end
 
       private

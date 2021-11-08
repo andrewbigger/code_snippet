@@ -1,3 +1,4 @@
+require 'clipboard'
 require 'tty-prompt'
 
 module CodeSnippet
@@ -28,14 +29,14 @@ module CodeSnippet
           puts "COPIED: #{snip.path}"
         end
 
-        puts snip.content
+        puts(snip.content)
       end
-
-      private
 
       def find_snippets(name)
         snips = @manager.find(name)
         raise "unable to find #{name}" if snips.empty?
+
+        snips
       end
 
       def pick_snippet(snips)

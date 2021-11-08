@@ -6,7 +6,6 @@ module CodeSnippet
     class PrintVersion
       def initialize(options = Hashie::Mash.new)
         @options = options
-        @prompt = TTY::Prompt.new
       end
 
       ##

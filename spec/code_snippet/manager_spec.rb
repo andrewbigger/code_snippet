@@ -163,4 +163,27 @@ RSpec.describe CodeSnippet::Manager do
       expect(@result[1]).to be another_target_snip
     end
   end
+
+  describe '#snippet_names' do
+    let(:snip) do
+      CodeSnippet::Snip.new('path/to/snip.rb', 'snip.go', '.go')
+    end
+
+    let(:snips) do
+      [
+        snip,
+        snip,
+        snip
+      ]
+    end
+
+    before do
+      subject.instance_variable_set(:@snippets, snips)
+      @result = subject.snippet_names
+    end
+
+    it 'returns array of snippet names' do
+      expect(@result).to eq ['snip', 'snip', 'snip']
+    end
+  end
 end

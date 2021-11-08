@@ -64,33 +64,33 @@ module CodeSnippet
       cmd.run
     end
 
-    protected
+    no_commands do
+      ##
+      # Retrieves snippet dir from environment
+      #
+      def snip_dir
+        @snippet_dir = ENV['SNIPPET_DIR']
 
-    ##
-    # Retrieves snippet dir from environment
-    #
-    def snip_dir
-      @snippet_dir = ENV['SNIPPET_DIR']
+        raise 'SNIPPET_DIR environment variable not set' unless @snippet_dir
 
-      raise 'SNIPPET_DIR environment variable not set' unless @snippet_dir
+        unless File.exist?(@snippet_dir)
+          raise "SNIPPET_DIR #{@snippet_dir} does not exist"
+        end
 
-      unless File.exist?(@snippet_dir)
-        raise "SNIPPET_DIR #{@snippet_dir} does not exist"
+        @snippet_dir
       end
 
-      @snippet_dir
-    end
+      ##
+      # Loads and creates snippet manager
+      #
+      # @return [CodeSnippet::Manager]
+      #
+      def manager
+        @manager ||= CodeSnippet::Manager.new(snip_dir)
+        @manager.load
 
-    ##
-    # Loads and creates snippet manager
-    #
-    # @return [CodeSnippet::Manager]
-    #
-    def manager
-      @manager ||= CodeSnippet::Manager.new(snip_dir)
-      @manager.load
-
-      @manager
+        @manager
+      end
     end
   end
 end

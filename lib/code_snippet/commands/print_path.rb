@@ -7,7 +7,6 @@ module CodeSnippet
       def initialize(snip_dir, options = Hashie::Mash.new)
         @snip_dir = snip_dir
         @options = options
-        @prompt = TTY::Prompt.new
       end
 
       ##
